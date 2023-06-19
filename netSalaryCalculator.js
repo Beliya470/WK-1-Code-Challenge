@@ -1,3 +1,8 @@
+const readline = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
 // Constants
 const taxBrackets = [
   { min: 0, max: 24000, rate: 0.1 },
@@ -74,5 +79,17 @@ function calculateNetSalary(basicSalary, benefits) {
   console.log(`Net Salary: ${netSalary}`);
 }
 
-// Test
-calculateNetSalary(50000, 10000);
+// Prompt the user for basic salary
+readline.question('Enter your basic salary: ', basicSalaryInput => {
+  let basicSalary = parseFloat(basicSalaryInput);
+
+  // Prompt the user for benefits
+  readline.question('Enter your benefits: ', benefitsInput => {
+    let benefits = parseFloat(benefitsInput);
+
+    // Calculate and display the net salary
+    calculateNetSalary(basicSalary, benefits);
+
+    readline.close();
+  });
+});
