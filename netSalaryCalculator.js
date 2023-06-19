@@ -1,8 +1,3 @@
-const readline = require('readline').createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
 // Constants
 const taxBrackets = [
   { min: 0, max: 24000, rate: 0.1 },
@@ -31,8 +26,8 @@ const nhifBrackets = [
 ];
 
 const nssfRates = {
-  tier_I: 0.06, 
-  tier_II: 0.06, 
+  tier_I: 0.06,
+  tier_II: 0.06,
   tier_I_limit: 6000,
   tier_II_limit: 18000
 };
@@ -72,24 +67,20 @@ function calculateNetSalary(basicSalary, benefits) {
   const netSalary = grossSalary - tax - nhifDeduction - nssfDeduction;
 
   // Output
-  console.log(`Gross Salary: ${grossSalary}`);
-  console.log(`PAYE: ${tax}`);
-  console.log(`NHIF Deductions: ${nhifDeduction}`);
-  console.log(`NSSF Deductions: ${nssfDeduction}`);
-  console.log(`Net Salary: ${netSalary}`);
+  alert(`Gross Salary: ${grossSalary}`);
+  alert(`PAYE: ${tax}`);
+  alert(`NHIF Deductions: ${nhifDeduction}`);
+  alert(`NSSF Deductions: ${nssfDeduction}`);
+  alert(`Net Salary: ${netSalary}`);
 }
 
 // Prompt the user for basic salary
-readline.question('Enter your basic salary: ', basicSalaryInput => {
-  let basicSalary = parseFloat(basicSalaryInput);
+let basicSalaryInput = prompt('Enter your basic salary: ');
+let basicSalary = parseFloat(basicSalaryInput);
 
-  // Prompt the user for benefits
-  readline.question('Enter your benefits: ', benefitsInput => {
-    let benefits = parseFloat(benefitsInput);
+// Prompt the user for benefits
+let benefitsInput = prompt('Enter your benefits: ');
+let benefits = parseFloat(benefitsInput);
 
-    // Calculate and display the net salary
-    calculateNetSalary(basicSalary, benefits);
-
-    readline.close();
-  });
-});
+// Calculate and display the net salary
+calculateNetSalary(basicSalary, benefits);

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Applications</title>
+</head>
+<body>
+    <h1>JavaScript Applications</h1>
+    
+    <button onclick="runNetSalaryCalculator()">Net Salary Calculator</button>
+    <button onclick="runSpeedDetector()">Speed Detector</button>
+    <button onclick="runStudentGradeGenerator()">Student Grade Generator</button>
+
+    <script src="netSalaryCalculator.js"></script>
+    <script src="speedDetector.js"></script>
+    <script src="studentGradeGenerator.js"></script>
+
+    <script>
+        function runNetSalaryCalculator() {
+            calculateNetSalary(
+                parseFloat(prompt('Enter your basic salary: ')),
+                parseFloat(prompt('Enter your benefits: '))
+            );
+        }
+        
+        function runSpeedDetector() {
+            let speed = parseInt(prompt('Enter speed: '));
+            if (speed < speedLimit) {
+                alert("Ok");
+            } else {
+                let points = Math.floor((speed - speedLimit) / kmPerPoint);
+                if (points >= 12) {
+                    alert("License suspended");
+                } else {
+                    alert("Points: " + points);
+                }
+            }
+        }
+        
+        function runStudentGradeGenerator() {
+            let marks = parseInt(prompt('Enter student marks (0-100):'));
+            if (marks < 0 || marks > 100) {
+                alert("Invalid marks. Please enter a number between 0 and 100.");
+            } else if (marks >= 80) {
+                alert("Grade: A");
+            } else if (marks >= 60) {
+                alert("Grade: B");
+            } else if (marks >= 50) {
+                alert("Grade: C");
+            } else if (marks >= 40) {
+                alert("Grade: D");
+            } else {
+                alert("Grade: E");
+            }
+        }
+    </script>
+</body>
+</html>
