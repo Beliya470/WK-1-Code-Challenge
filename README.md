@@ -28,7 +28,16 @@ NB: Use KRA, NHIF, and NSSF values provided in the links below.
 
 ## Project Setup
 
-To run the code, open the `index.html` file in a web browser. Each challenge has its own section with input fields and buttons. Enter the required values or modify the code as needed to test different scenarios.
+To run the code, follow the instructions below:
+
+1. Clone the repository to your local machine.
+2. Open the project folder in a code editor.
+3. Open the `index.html` file in a web browser.
+4. Each challenge has its own section on the web page with input fields and buttons.
+5. Enter the required values or modify the code as needed to test different scenarios.
+6. Interact with the respective buttons to run the corresponding challenges.
+
+Make sure to have a compatible web browser to run the JavaScript code.
 
 ## Author
 
