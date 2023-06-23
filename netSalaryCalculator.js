@@ -33,20 +33,26 @@ const nssfRates = {
 };
 
 // Function
-function calculateNetSalary(basicSalary, benefits) {
+function calculateNetSalary() {
+  const basicSalaryInput = parseFloat(document.getElementById('basicSalary').value);
+  const benefitsInput = parseFloat(document.getElementById('benefits').value);
+
+  const basicSalary = isNaN(basicSalaryInput) ? 0 : basicSalaryInput;
+  const benefits = isNaN(benefitsInput) ? 0 : benefitsInput;
+
   const grossSalary = basicSalary + benefits;
 
   // Calculate PAYE (tax)
   let tax = 0;
   let taxableIncome = grossSalary;
   for (let bracket of taxBrackets) {
-      if (bracket.min <= taxableIncome && taxableIncome <= bracket.max) {
-          tax += (taxableIncome - bracket.min) * bracket.rate;
-          break;
-      } else if (bracket.min <= taxableIncome) {
-          tax += (bracket.max - bracket.min) * bracket.rate;
-          taxableIncome -= bracket.max - bracket.min;
-      }
+    if (bracket.min <= taxableIncome && taxableIncome <= bracket.max) {
+      tax += (taxableIncome - bracket.min) * bracket.rate;
+      break;
+    } else if (bracket.min <= taxableIncome) {
+      tax += (bracket.max - bracket.min) * bracket.rate;
+      taxableIncome -= bracket.max - bracket.min;
+    }
   }
 
   // Calculate NHIF deductions
@@ -56,31 +62,23 @@ function calculateNetSalary(basicSalary, benefits) {
   // Calculate NSSF deductions
   let nssfDeduction = 0;
   if (grossSalary <= nssfRates.tier_I_limit) {
-      nssfDeduction = grossSalary * nssfRates.tier_I;
+    nssfDeduction = grossSalary * nssfRates.tier_I;
   } else if (grossSalary <= nssfRates.tier_II_limit) {
-      nssfDeduction = (grossSalary - nssfRates.tier_I_limit) * nssfRates.tier_II + nssfRates.tier_I_limit * nssfRates.tier_I;
+    nssfDeduction = (grossSalary - nssfRates.tier_I_limit) * nssfRates.tier_II + nssfRates.tier_I_limit * nssfRates.tier_I;
   } else {
-      nssfDeduction = (nssfRates.tier_II_limit - nssfRates.tier_I_limit) * nssfRates.tier_II + nssfRates.tier_I_limit * nssfRates.tier_I;
+    nssfDeduction = (nssfRates.tier_II_limit - nssfRates.tier_I_limit) * nssfRates.tier_II + nssfRates.tier_I_limit * nssfRates.tier_I;
   }
 
   // Calculate net salary
   const netSalary = grossSalary - tax - nhifDeduction - nssfDeduction;
 
   // Output
-  alert(`Gross Salary: ${grossSalary}`);
-  alert(`PAYE: ${tax}`);
-  alert(`NHIF Deductions: ${nhifDeduction}`);
-  alert(`NSSF Deductions: ${nssfDeduction}`);
-  alert(`Net Salary: ${netSalary}`);
+  const netSalaryOutput = document.getElementById('netSalaryOutput');
+  netSalaryOutput.innerHTML = `
+    <p>Gross Salary: ${grossSalary}</p>
+    <p>PAYE: ${tax}</p>
+    <p>NHIF Deductions: ${nhifDeduction}</p>
+    <p>NSSF Deductions: ${nssfDeduction}</p>
+    <p>Net Salary: ${netSalary}</p>
+  `;
 }
-
-// Prompt the user for basic salary
-let basicSalaryInput = prompt('Enter your basic salary: ');
-let basicSalary = parseFloat(basicSalaryInput);
-
-// Prompt the user for benefits
-let benefitsInput = prompt('Enter your benefits: ');
-let benefits = parseFloat(benefitsInput);
-
-// Calculate and display the net salary
-calculateNetSalary(basicSalary, benefits);

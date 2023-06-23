@@ -28,13 +28,7 @@ NB: Use KRA, NHIF, and NSSF values provided in the links below.
 
 ## Project Setup
 
-To run the code, ensure you have Node.js installed. Clone the repository and navigate to the project directory. Install the dependencies using the following command:
-
-
-Each challenge has its own JavaScript file, and you can run them individually using the `node` command followed by the filename. For example:
-
-
-Make sure to input the required values or modify the code as needed to test different scenarios.
+To run the code, open the `index.html` file in a web browser. Each challenge has its own section with input fields and buttons. Enter the required values or modify the code as needed to test different scenarios.
 
 ## Author
 
@@ -43,4 +37,3 @@ This project is created by Anne Anziya.
 ## License
 
 This project is licensed under the MIT License.
-

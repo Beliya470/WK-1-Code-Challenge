@@ -2,56 +2,51 @@
 <html>
 <head>
     <title>JavaScript Applications</title>
+    <style>
+        .column {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+    </style>
 </head>
 <body>
     <h1>JavaScript Applications</h1>
     
-    <button onclick="runNetSalaryCalculator()">Net Salary Calculator</button>
-    <button onclick="runSpeedDetector()">Speed Detector</button>
-    <button onclick="runStudentGradeGenerator()">Student Grade Generator</button>
+    <div class="column">
+        <h2>Net Salary Calculator</h2>
+        <label for="basicSalary">Basic Salary:</label>
+        <input type="number" id="basicSalary" min="0" step="0.01">
+        <br>
+        <label for="benefits">Benefits:</label>
+        <input type="number" id="benefits" min="0" step="0.01">
+        <br>
+        <button onclick="calculateNetSalary()">Calculate</button>
+        <div id="netSalaryOutput"></div>
+    </div>
+
+    <div class="column">
+        <h2>Speed Detector</h2>
+        <label for="speed">Speed:</label>
+        <input type="number" id="speed" min="0">
+        <br>
+        <button onclick="checkSpeed()">Check Speed</button>
+        <div id="speedOutput"></div>
+    </div>
+
+    <div class="column">
+        <h2>Student Grade Generator</h2>
+        <label for="marks">Student Marks:</label>
+        <input type="number" id="marks" min="0" max="100">
+        <br>
+        <button onclick="generateGrade()">Generate Grade</button>
+        <div id="gradeOutput"></div>
+    </div>
 
     <script src="netSalaryCalculator.js"></script>
     <script src="speedDetector.js"></script>
     <script src="studentGradeGenerator.js"></script>
-
-    <script>
-        function runNetSalaryCalculator() {
-            calculateNetSalary(
-                parseFloat(prompt('Enter your basic salary: ')),
-                parseFloat(prompt('Enter your benefits: '))
-            );
-        }
-        
-        function runSpeedDetector() {
-            let speed = parseInt(prompt('Enter speed: '));
-            if (speed < speedLimit) {
-                alert("Ok");
-            } else {
-                let points = Math.floor((speed - speedLimit) / kmPerPoint);
-                if (points >= 12) {
-                    alert("License suspended");
-                } else {
-                    alert("Points: " + points);
-                }
-            }
-        }
-        
-        function runStudentGradeGenerator() {
-            let marks = parseInt(prompt('Enter student marks (0-100):'));
-            if (marks < 0 || marks > 100) {
-                alert("Invalid marks. Please enter a number between 0 and 100.");
-            } else if (marks >= 80) {
-                alert("Grade: A");
-            } else if (marks >= 60) {
-                alert("Grade: B");
-            } else if (marks >= 50) {
-                alert("Grade: C");
-            } else if (marks >= 40) {
-                alert("Grade: D");
-            } else {
-                alert("Grade: E");
-            }
-        }
-    </script>
 </body>
 </html>
